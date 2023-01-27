@@ -1,22 +1,11 @@
 N, M = map(int, input().split())
 
-# 행렬 입력
-matrix1 = []
-for _ in range(N):
-    row = list(map(int, input().split()))
-    matrix1.append(row)
-
-matrix2 = []
-for _ in range(N):
-    row = list(map(int, input().split()))
-    matrix2.append(row)
-
-matrix = []
+# 첫번째 행렬
+matrix1 = [list(map(int, input().split())) for _ in range(N)]
+# 두번째 행렬
+matrix2 = [list(map(int, input().split())) for _ in range(N)]
+# 각 원소의 합 도출
 for i in range(N):
-    final_row = []
     for j in range(M):
-        final_row.append(matrix1[i][j]+matrix2[i][j])
-    matrix.append(final_row)
-
-for i in range(N):
-    print(*matrix[i], sep = ' ')
+        matrix1[i][j]+= matrix2[i][j]
+    print(*matrix1[i])
