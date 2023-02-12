@@ -1,11 +1,7 @@
 N, M = map(int, input().split())
 
-unheard = set()
-for i in range(N):
-    unheard.add(input())
-unseen = set()
-for i in range(M):
-    unseen.add(input())
+unheard = set(input() for _ in range(N))
+unseen = set(input() for _ in range(M))
 
 both = unheard.intersection(unseen)
-print(len(both), *sorted(list(both)) , sep='\n')
+print(len(both), *sorted(list(both)), sep='\n')
