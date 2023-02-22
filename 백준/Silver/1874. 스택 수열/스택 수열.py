@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 N = int(input())
 stack = []
 num = 1
