@@ -1,26 +1,29 @@
 import sys
-sys.setrecursionlimit(200000)
 input = sys.stdin.readline
 
-def DFS(arr, start):
-    global cnt
-    visited[start] = cnt
-    cnt += 1
-    for i in arr[start]:
-        if not visited[i]:
-            DFS(arr, i)
-
-
-N, M, R = map(int, input().strip().split())
-graph = [[] for _ in range(N+1)]
-for _ in range(M):
-    spot, node = map(int, input().strip().split())
-    graph[spot].append(node)
-    graph[node].append(spot)
-
-for i in range(N+1):
-    graph[i].sort()
+N, M, R = map(int, input().split())
+adjL = [[] for _ in range(N+1)] # 메모리초과 피하기 위해 인접리스트 활용
+visited = [0]*(N+1)
+stack= [R]
 cnt = 1
-visited = [0] *(N+1)
-DFS(graph, R)
-[print(visited[i]) for i in range(1, N+1)]
+for _ in range(M): # 인접행렬
+    m, n = map(int, input().split())
+    adjL[m].append(n)
+    adjL[n].append(m)
+
+for i in adjL:
+    i.sort(reverse=True)
+
+while stack:
+    t = stack.pop()
+    if visited[t]:
+        continue
+    visited[t] = cnt
+    cnt += 1
+    for w in adjL[t]: # 방문안한 인접점들 push
+        if not visited[w]:
+            stack.append(w) # pop할 때 오름차순으로 나옴
+
+print(*visited[1:], sep='\n')
+
+
