@@ -1,26 +1,19 @@
-def dfs(n,sm):
-    global ans
-    # [3] 가지치기: 더 이상 정답 갱신 가능성 없는 경우
-    # 가장 마지막에, 가장 위쪽에
-    if K < sm:
+def find(i,sm): # i 현재 인덱스, sm 현재까지의 부분수열의 총합
+    global cnt
+    if sm > K: # 가지치기
         return
-
-    # [1] 종료조건(n에 관련): 반드시 정답처리는 이곳에서만!
-    if n==N:
-        if sm == K:
-            ans += 1
+    if sm ==K: # 종료조건
+        cnt += 1
         return
-
-    # [2] 하부호출
-    dfs(n+1, sm+lst[n]) # 포함
-    dfs(n+1, sm)        # 포함 X
+    elif i==N: # 종료조건
+        return
+    find(i+1, sm+A[i]) # 포함
+    find(i+1, sm) # 미포함
 
 T = int(input())
-for tc in range(1,T+1):
-    N, K = map(int, input().split())
-    lst = list(map(int, input().split()))
-
-    ans = 0
-    dfs(0,0)
-
-    print(f'#{tc} {ans}')
+for tc in range(1, T+1):
+    N, K = map(int, input().split()) # N 수열의 길이, K 기준 합
+    A = list(map(int, input().split())) # A 수열
+    cnt = 0
+    find(0,0)
+    print(f'#{tc} {cnt}')
