@@ -42,7 +42,7 @@ def f(N):
             ni, nj = i+di, j+dj
             if 0<=ni<N and 0<=nj<N and D[ni][nj]>(D[i][j]+1+max(0,arr[ni][nj]-arr[i][j])):
                 D[ni][nj] = D[i][j]+1+max(0,arr[ni][nj]-arr[i][j])
-                Q.append((ni,nj)) # 비용이 갱신된 곳의 
+                Q.append((ni,nj)) # 비용이 갱신된 곳의 좌표를 인큐
     return D[N-1][N-1]
 
 T = int(input())
