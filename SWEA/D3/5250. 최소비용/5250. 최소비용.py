@@ -30,7 +30,7 @@ for tc in range(1,T+1):
     print(f'#{tc} {dij(N)}')
 
 # 방법 2 - 263 ms
-def f(N):
+def bfs(N):
     INF = 1000000
     Q = []
     D = [[INF]*N for _ in range(N)]
@@ -49,4 +49,4 @@ T = int(input())
 for tc in range(1,T+1):
     N = int(input())
     arr = [list(map(int, input().split())) for _ in range(N)]
-    print(f'#{tc} {f(N)}')
+    print(f'#{tc} {bfs(N)}')
