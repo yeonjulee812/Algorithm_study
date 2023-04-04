@@ -36,13 +36,13 @@ def f(N):
     D = [[INF]*N for _ in range(N)]
     Q.append((0,0))
     D[0][0] = 0
-    while Q:
+    while Q: # 더이상 비용이 갱신되는 칸이 없을 때까지 반복
         i, j = Q.pop(0)
         for di, dj in [[0,1],[1,0],[0,-1],[-1,0]]:
             ni, nj = i+di, j+dj
             if 0<=ni<N and 0<=nj<N and D[ni][nj]>(D[i][j]+1+max(0,arr[ni][nj]-arr[i][j])):
                 D[ni][nj] = D[i][j]+1+max(0,arr[ni][nj]-arr[i][j])
-                Q.append((ni,nj))
+                Q.append((ni,nj)) # 비용이 갱신된 곳의 
     return D[N-1][N-1]
 
 T = int(input())
